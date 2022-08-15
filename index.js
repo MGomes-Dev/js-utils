@@ -1,3 +1,13 @@
+const compose = (...funcs) => {
+    return (...args) => {
+        return funcs.reduceRight((arg, func, index, fullArr) => {
+            // first call can receive more than one argument
+            // subsequent calls can receive only one argument
+            return index === fullArr.length - 1 ? func(...arg) : func(arg);
+        }, args);
+    };
+};
+
 const numberTypeOf = (numb) => {
     switch (true) {
         case Number.isNaN(numb):
@@ -28,6 +38,16 @@ const objectTypeOf = (obj) => {
     };
 };
 
+const pipe = (...funcs) => {
+    return (...args) => {
+        return funcs.reduce((arg, func, index) => {
+            // first call can receive more than one argument
+            // subsequent calls can receive only one argument
+            return index === 0 ? func(...arg) : func(arg);
+        }, args);
+    };
+};
+
 const typeOf = (input) => {
     const jsTypeOf = typeof input;
 
@@ -45,5 +65,7 @@ const typeOf = (input) => {
 };
 
 module.exports = {
-    typeOf
+    typeOf,
+    pipe,
+    compose
 };
