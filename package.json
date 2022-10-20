@@ -7,7 +7,7 @@
         "url": "https://github.com/MGomes-Dev/js-utils"
     },
     "author": "MGomes-Dev",
-    "license": "MIT",
+    "license": "GNU AGPL",
     "engines": {
         "node": ">=16.0.0"
     }
