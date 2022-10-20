@@ -1,0 +1,14 @@
+{
+    "name": "js-utils",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/MGomes-Dev/js-utils"
+    },
+    "author": "MGomes-Dev",
+    "license": "MIT",
+    "engines": {
+        "node": ">=16.0.0"
+    }
+}
