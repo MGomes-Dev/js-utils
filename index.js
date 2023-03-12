@@ -1,12 +1,3 @@
-//test isIn
-//test assoc, assocIf, dissoc
-//test get
-//test arrayToMap
-//test bind
-//test evolve
-//test filterSelect, select
-//test invokeAndBypass
-
 const arrayToMap = (key, funcOrArray, maybeArray) => {
     const [arr, func] = maybeArray ? [maybeArray, funcOrArray] : [funcOrArray];
 
@@ -123,6 +114,23 @@ const get = (keyOrKeys, obj) => {
     }
 };
 
+const merge = (originalObj, objToMerge) => {
+    Object.entries(objToMerge).forEach(([key, value]) => {
+        const originalValue = originalObj[key];
+
+        const newValueIsObj = typeOf(value) === "object";
+        const originalValueIsObj = typeOf(originalValue) === "object";
+
+        if (newValueIsObj && originalValueIsObj) {
+            assocDeep(oldValue, value)
+        } else {
+            originalObj[key] = value;
+        }
+    });
+
+    return originalObj;
+};
+
 const numberTypeOf = (numb) => {
     switch (true) {
         case Number.isNaN(numb):
@@ -205,6 +213,7 @@ module.exports = {
     get,
     invokeAndBypass,
     isIn,
+    merge,
     pipe,
     select,
     typeOf
