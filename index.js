@@ -122,7 +122,7 @@ const merge = (originalObj, objToMerge) => {
         const originalValueIsObj = typeOf(originalValue) === "object";
 
         if (newValueIsObj && originalValueIsObj) {
-            merge(oldValue, value)
+            merge(originalValue, value)
         } else {
             originalObj[key] = value;
         }
