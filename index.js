@@ -122,7 +122,7 @@ const merge = (originalObj, objToMerge) => {
         const originalValueIsObj = typeOf(originalValue) === "object";
 
         if (newValueIsObj && originalValueIsObj) {
-            assocDeep(oldValue, value)
+            merge(oldValue, value)
         } else {
             originalObj[key] = value;
         }
