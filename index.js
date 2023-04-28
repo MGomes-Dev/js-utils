@@ -58,7 +58,7 @@ const get = (keyOrKeys, obj) => {
     if (obj && keyOrKeys && typeOf(obj) === "object") {
         const [key, ...nextKeys] = typeOf(keyOrKeys) === "array" ?
             keyOrKeys :
-            [key];
+            [keyOrKeys];
 
         return nextKeys.length ?
             get(nextKeys, obj) :
