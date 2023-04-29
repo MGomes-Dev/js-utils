@@ -154,15 +154,15 @@ const evolve = (transformations, obj) => {
     return Object.entries(transformations).reduce(transform, obj);
 };
 
-const evolveAll = (selectFunc, transformFunc, itemToTransform) => {
+const evolveEach = (selectFunc, transformFunc, itemToTransform) => {
     const arrayTransform = (array, arrayTransformFunc) => {
-        return array.map(bind(evolveAll, selectFunc, arrayTransformFunc))
+        return array.map(bind(evolveEach, selectFunc, arrayTransformFunc))
     };
 
     const objectTransform = (object, objectTransformFunc) => {
         return Object.fromEntries(
             Object.entries(object).map(([key, value]) => {
-                return [key, evolveAll(selectFunc, objectTransformFunc, value)];
+                return [key, evolveEach(selectFunc, objectTransformFunc, value)];
             })
         )
     };
@@ -241,7 +241,7 @@ module.exports = {
     constantly,
     dissoc,
     evolve,
-    evolveAll,
+    evolveEach,
     filterSelect,
     get,
     invokeAndBypass,
