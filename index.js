@@ -55,13 +55,13 @@ const isIn = (valuesToCompare, value) => {
 };
 
 const get = (keyOrKeys, obj) => {
-    if (obj && keyOrKeys) {
-        const [key, ...nextKeys] = typeOf(keyOrKeys) === "array" ?
-            keyOrKeys :
-            [keyOrKeys];
+    const [key, ...nextKeys] = typeOf(keyOrKeys) === "array" ?
+        keyOrKeys :
+        [keyOrKeys];
 
+    if (obj && key && obj[key]) {
         return nextKeys.length ?
-            get(nextKeys, obj) :
+            get(nextKeys, obj[key]) :
             obj[key];
     } else {
         return obj;
