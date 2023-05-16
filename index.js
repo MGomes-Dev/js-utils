@@ -55,7 +55,7 @@ const isIn = (valuesToCompare, value) => {
 };
 
 const get = (keyOrKeys, obj) => {
-    if (obj && keyOrKeys && typeOf(obj) === "object") {
+    if (obj && keyOrKeys) {
         const [key, ...nextKeys] = typeOf(keyOrKeys) === "array" ?
             keyOrKeys :
             [keyOrKeys];
