@@ -87,7 +87,7 @@ const assocIf = (obj, key, value, ...nextKeysValues) => {
         };
 
         return nextKeysValues ?
-            assoc(obj, ...nextKeysValues) :
+            assocIf(obj, ...nextKeysValues) :
             obj;
     } else {
         return obj;
