@@ -59,7 +59,7 @@ const get = (keyOrKeys, obj) => {
         keyOrKeys :
         [keyOrKeys];
 
-    if (obj && key && obj[key]) {
+    if (obj && obj[key]) {
         return nextKeys.length ?
             get(nextKeys, obj[key]) :
             obj[key];
