@@ -64,12 +64,12 @@ const get = (keyOrKeys, obj) => {
             get(nextKeys, obj[key]) :
             obj[key];
     } else {
-        return obj;
+        return undefined;
     }
 };
 
 const assoc = (obj, key, value, ...nextKeysValues) => {
-    if (obj && key && typeOf(obj) === "object") {
+    if (obj) {
         obj[key] = value;
 
         return nextKeysValues ?
@@ -81,7 +81,7 @@ const assoc = (obj, key, value, ...nextKeysValues) => {
 };
 
 const assocIf = (obj, key, value, ...nextKeysValues) => {
-    if (obj && key && typeOf(obj) === "object") {
+    if (obj) {
         if (!isIn([null, undefined], value)) {
             obj[key] = value;
         };
