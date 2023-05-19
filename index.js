@@ -72,7 +72,7 @@ const assoc = (obj, key, value, ...nextKeysValues) => {
     if (obj) {
         obj[key] = value;
 
-        return nextKeysValues ?
+        return nextKeysValues.length ?
             assoc(obj, ...nextKeysValues) :
             obj;
     } else {
@@ -86,7 +86,7 @@ const assocIf = (obj, key, value, ...nextKeysValues) => {
             obj[key] = value;
         };
 
-        return nextKeysValues ?
+        return nextKeysValues.length ?
             assocIf(obj, ...nextKeysValues) :
             obj;
     } else {
