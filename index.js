@@ -95,8 +95,8 @@ const assocIf = (obj, key, value, ...nextKeysValues) => {
 };
 
 const dissoc = (obj, key, ...nextKeys) => {
-    if (obj && key && typeOf(obj) === "object") {
-        delete obj.key;
+    if (obj) {
+        delete obj[key];
 
         return nextKeys ?
             dissoc(obj, ...nextKeys) :
@@ -232,6 +232,18 @@ const merge = (originalObj, objToMerge) => {
     return originalObj;
 };
 
+const invokeInSequence = ([currentPromise, ...nextPromises]) => {
+    return nextPromises.length ?
+        currentPromise().then((_) => invokeInSequence(nextPromises)) :
+        currentPromise();
+};
+
+const wrapOnFunction = (func, ...args) => {
+    return () => {
+        return func(...args)
+    }
+};
+
 module.exports = {
     arrayToMap,
     assoc,
@@ -245,9 +257,11 @@ module.exports = {
     filterSelect,
     get,
     invokeAndBypass,
+    invokeInSequence,
     isIn,
     merge,
     pipe,
     select,
-    typeOf
+    typeOf,
+    wrapOnFunction
 };
