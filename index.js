@@ -232,10 +232,24 @@ const merge = (originalObj, objToMerge) => {
     return originalObj;
 };
 
-const invokeInSequence = ([currentPromise, ...nextPromises]) => {
-    return nextPromises.length ?
-        currentPromise().then((_) => invokeInSequence(nextPromises)) :
-        currentPromise();
+const invokeInSequence = ([currentPromise, ...nextPromises], results = []) => {
+    if (!currentPromise) {
+        return Promise.resolve(results);
+    }
+
+    return Promise.resolve()
+        .then((_) => currentPromise())
+        .then((result) => {
+            results.push({ status: "fulfilled", value: result });
+        })
+        .catch((error) => {
+            results.push({ status: "rejected", reason: error });
+        })
+        .finally((_) => {
+            return nextPromises.length ?
+                invokeInSequence(nextPromises, results) :
+                results;
+        })
 };
 
 const wrapOnFunction = (func, ...args) => {
