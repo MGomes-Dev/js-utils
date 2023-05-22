@@ -245,7 +245,7 @@ const invokeInSequence = ([currentPromise, ...nextPromises], results = []) => {
         .catch((error) => {
             results.push({ status: "rejected", reason: error });
         })
-        .finally((_) => {
+        .then((_) => {
             return nextPromises.length ?
                 invokeInSequence(nextPromises, results) :
                 results;
