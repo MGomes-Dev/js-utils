@@ -98,7 +98,7 @@ const dissoc = (obj, key, ...nextKeys) => {
     if (obj) {
         delete obj[key];
 
-        return nextKeys ?
+        return nextKeys.length ?
             dissoc(obj, ...nextKeys) :
             obj;
     } else {
