@@ -94,6 +94,20 @@ const assocIf = (obj, key, value, ...nextKeysValues) => {
     }
 };
 
+const filterAssoc = (validationFunc, obj, key, value, ...nextKeysValues) => {
+    if (obj) {
+        if (validationFunc(value)) {
+            obj[key] = value;
+        };
+
+        return nextKeysValues.length ?
+            assocIf(obj, ...nextKeysValues) :
+            obj;
+    } else {
+        return obj;
+    }
+};
+
 const dissoc = (obj, key, ...nextKeys) => {
     if (obj) {
         delete obj[key];
