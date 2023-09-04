@@ -276,6 +276,7 @@ module.exports = {
     arrayToMap,
     assoc,
     assocIf,
+    filterAssoc,
     bind,
     compose,
     constantly,
